@@ -10,15 +10,15 @@ const db = mysql.createConnection(
         user: 'root',
         // Add MySQL Password
         password: 'password',
-        database: 'employee_db'
+        database: 'employer_db'
     },
-    console.log("Connected to the employee_db database.")
+    console.log("Connected to the employer_db database.")
 );
 
 // Executes connection on start
 db.connect((err)=>{
     if (err) throw (err);
-    console.log("There is an error");
+    console.log(err);
 });
 
 // Create callback functions for information to add to tables
@@ -38,30 +38,31 @@ function prompts() {
                 "Add A Department",
                 "Update An Employee", 
                 "Exit"
-            ]
+            ],
         }
     ])
     .then(answers=>{
-        switch (answers.choice) {
-            case "View All Employees":
+        console.log(answers.doStuff)
+        switch (answers.doStuff) {
+            case ("View All Employees"):
                 viewEmp();                
                 break;
-            case "View All Roles":
+            case ("View All Roles"):
                 viewRole();
                 break;
-            case "View All Departments":
+            case ("View All Departments"):
                 viewDept();
                 break;
-            case "Add Employee":
+            case ("Add Employee"):
                 addEmp();
                 break;
-            case "Add Employee Role":
+            case ("Add Employee Role"):
                 addRole();
                 break;
-            case "Add A Department":
+            case ("Add A Department"):
                 addDept();
                 break;
-            case "Update An Employee":
+            case ("Update An Employee"):
                 updateEmp();
             default:
                 console.log("Thank you, good bye!");
@@ -72,17 +73,24 @@ function prompts() {
 };
 // Create path to view list of employees
 function viewEmp() {
-    db.query("SELECT * FROM employee", (req,res), (err,data)=>{
-        err? err: prompts();
+    db.query("SELECT * FROM employee", (err,data)=>{
+        err? err : console.table(data);
+        prompts();
     })
 };
 // Create path to view list of roles
 function viewRole() {
-
+    db.query("SELECT * FROM roles", (err,data)=>{
+        err? err : console.table(data);
+        prompts();
+    })
 };
 // Create path to view list of departments
 function viewDept() {
-
+    db.query("SELECT * FROM department", (err,data)=>{
+        err? err : console.table(data);
+        prompts();
+    })
 };
 // Create path to add an employee
 function addEmp() {
@@ -101,7 +109,4 @@ function updateEmp() {
 
 };
 
-
-
-
-
+prompts();
