@@ -72,7 +72,9 @@ function prompts() {
 };
 // Create path to view list of employees
 function viewEmp() {
-
+    db.query("SELECT * FROM employee", (req,res), (err,data)=>{
+        err? err: prompts();
+    })
 };
 // Create path to view list of roles
 function viewRole() {
