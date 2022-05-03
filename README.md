@@ -22,7 +22,7 @@ Use the command "npm install (any npm packages needed)" to install any necessary
 
 ## Usage
 
-To use this application, run "Node server.js" in the terminal. It will bring up a menu to view all departments, view all employees, add a department, add a role, add an employee, and update an employee role. Whenever an option is selected from the above, further options will be prompted to be filled in by the user. After all prompts are answered, information will be generated into the table presented to the user..
+To use this application, run "Node server.js" in the terminal. It will bring up a menu to view all departments, view all employees, add a department, add a role, add an employee, and update an employee role. Whenever an option is selected from the above, further options will be prompted to be filled in by the user. After all prompts are answered, information will be generated into the table presented to the user.
 
 ## Contributions
 
