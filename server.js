@@ -175,12 +175,12 @@ function updateEmp() {
             name:"updateEmp"
         },{
             type:"number",
-            message:"What is the role ID you want to change?",
-            name:"updateRole"            
+            message:"What is new manager ID?",
+            name:"updateMan"            
         }
     ])
     .then((answers)=>{
-        db.query("UPDATE employee SET role_id = ? WHERE id = ?", [answers.updateRole,answers.updateEmp], (err,data)=>{
+        db.query("UPDATE employee SET manager_id = ? WHERE id = ?", [answers.updateMan,answers.updateEmp], (err,data)=>{
             if (err) {
                 throw err
             }
