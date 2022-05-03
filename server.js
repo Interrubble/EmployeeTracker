@@ -62,6 +62,7 @@ function prompts() {
                 break;
             case ("Update An Employee"):
                 updateEmp();
+                break;
             default:
                 console.log("Thank you, good bye!");
                 db.end();
