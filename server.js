@@ -159,7 +159,23 @@ function addDept() {
 };
 // Create path to update employee
 function updateEmp() {
-
+    inquirer.prompt([
+        {
+            type:"number",
+            message:"What is the employee ID you want to change?",
+            name:"updateEmp"
+        },{
+            type:"number",
+            message:"What is the role ID you want to change?",
+            name:"updateRole"            
+        }
+    ])
+    .then((answers)=>{
+        db.query("UPDATE employee SET role_id = ? WHERE id = ?", [answers.updateRole,answers.updateEmp], (err,data)=>{
+            err? err : console.table(data);
+            prompts();
+        })
+    })
 };
 
 prompts();
