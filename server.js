@@ -111,11 +111,11 @@ function addEmp() {
             name:"manId"
         }
     ]).then((answers)=>{
-        db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",[answers.first,answers.last,answers.roleId,answers.manId],(err)=>{
+        db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",[answers.first,answers.last,answers.roleId,answers.manId],(err,data)=>{
             if (err) {
                 throw err
             }
-            console.table(answers);
+            console.table(data);
             prompts();
         });
     })
@@ -138,11 +138,11 @@ function addRole() {
         }
     ])
     .then((answers)=>{
-        db.query("INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)", [answers.roleTitle, answers.roleSal, answers.roleDep], (err)=>{
+        db.query("INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)", [answers.roleTitle, answers.roleSal, answers.roleDep], (err,data)=>{
             if (err) {
                 throw err
             }
-            console.table(answers);
+            console.table(data);
             prompts();
         })
     })
@@ -157,11 +157,11 @@ function addDept() {
         }
     ])
     .then((answers)=>{
-        db.query("INSERT INTO department (department_name) VALUES (?)", answers.dept, (err)=>{
+        db.query("INSERT INTO department (department_name) VALUES (?)", answers.dept, (err,data)=>{
             if (err) {
                 throw err
             }
-            console.table(answers);
+            console.table(data);
             prompts();
         })
     })
@@ -180,11 +180,11 @@ function updateEmp() {
         }
     ])
     .then((answers)=>{
-        db.query("UPDATE employee SET manager_id = ? WHERE id = ?", [answers.updateMan,answers.updateEmp], (err)=>{
+        db.query("UPDATE employee SET manager_id = ? WHERE id = ?", [answers.updateMan,answers.updateEmp], (err,data)=>{
             if (err) {
                 throw err
             }
-            console.table(answers);
+            console.table(data);
             prompts();
         })
     })
