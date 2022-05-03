@@ -40,7 +40,6 @@ function prompts() {
         }
     ])
     .then(answers=>{
-        console.log(answers.doStuff)
         switch (answers.doStuff) {
             case ("View All Employees"):
                 viewEmp();                
