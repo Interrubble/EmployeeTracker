@@ -143,7 +143,19 @@ function addRole() {
 };
 // Create path to add a department
 function addDept() {
-
+    inquirer.prompt([
+        {
+            type:"input",
+            message:"What is the name of the new department?",
+            name:"dept"
+        }
+    ])
+    .then((answers)=>{
+        db.query("INSERT INTO department (department_name) VALUES (?)", answers.dept, (err,data)=>{
+            err? err : console.table(data);
+            prompts();
+        })
+    })
 };
 // Create path to update employee
 function updateEmp() {
