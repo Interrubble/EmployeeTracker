@@ -29,16 +29,14 @@ function prompts() {
             type: "list",
             message: "What would you like to do?",
             name: "doStuff",
-            choices: [
-                "View All Employees", 
+            choices: ["View All Employees", 
                 "View All Roles", 
                 "View All Departments",
                 "Add Employee",
                 "Add Employee Role",
                 "Add A Department",
                 "Update An Employee", 
-                "Exit"
-            ],
+                "Exit"],
         }
     ])
     .then(answers=>{
@@ -94,11 +92,54 @@ function viewDept() {
 };
 // Create path to add an employee
 function addEmp() {
-
+    inquirer.prompt([
+        {
+            type:"input",
+            message:"What is the employee's first name?",
+            name:"first",
+        },{
+            type:"input",
+            message:"What i the employee's last name?",
+            name:"last"
+        },{
+            type:"number",
+            message:"What is the employee's role ID number?",
+            name:"roleId"
+        },{
+            type:"number",
+            message:"What manager ID does the employee fall under?",
+            name:"manId"
+        }
+    ]).then((answers)=>{
+        db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",[answers.first,answers.last,answers.roleId,answers.manId],(err,data)=>{
+            err? err : console.table(data);
+            prompts();
+        });
+    })
 };
 // Create path to add an employee role
 function addRole() {
-
+    inquirer.prompt([
+        {
+            type:"input",
+            message:"What is the title of the role?",
+            name:"roleTitle"
+        },{
+            type:"number",
+            message:"What is the salary for the role?",
+            name:"roleSal"
+        },{
+            type:"number",
+            message:"What is the department ID?",
+            name:"roleDep"
+        }
+    ])
+    .then((answers)=>{
+        db.query("INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)", [answers.roleTitle, answers.roleSal, answers.roleDep], (err,data)=>{
+            err? err : console.table(data);
+            prompts();
+        })
+    })
 };
 // Create path to add a department
 function addDept() {
