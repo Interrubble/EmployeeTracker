@@ -24,6 +24,16 @@ db.connect((err)=>{
 // Create callback functions for information to add to tables
 // Function to establish menu
 function prompts() {
+    db.query("SOURCE schema.sql;",(err,data)=>{
+        if (err) {
+            throw err
+        }
+    })
+    db.query("SOURCE seeds.sql;",(err,data)=>{
+        if (err) {
+            throw err
+        }
+    })
     inquirer.prompt([
         {
             type: "list",
